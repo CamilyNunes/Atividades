@@ -1,0 +1,56 @@
+---
+title: "Untitled"
+author: "Camily"
+date: "2024-07-24"
+output: word_document
+---
+
+# Baixando os Dados do MapBiomas e Importando
+
+Para baixar os dados eu fui até ao site MapBiomas: link: <https://brasil.mapbiomas.org/>
+
+Ao acessar a aba "Mapas e Dados" selecionei entre as opções, "**DOWNLOADS"** : link: <https://brasil.mapbiomas.org/downloads/>
+
+Selecionei **DADOS DO MÓDULO MAPBIOMAS DEGRADAÇÃO: Link:** <https://brasil.mapbiomas.org/dados-do-modulo-mapbiomas-degradacao/>
+
+Apresenta as seguintes informações:
+
+A versão beta do módulo de Degradação disponível na plataforma do MapBiomas apresenta:
+
+-   os vetores de degradação da vegetação nativa do Brasil entre 1986 a 2021.
+
+    -   Os vetores incluem:
+
+        -   área de borda,
+
+        -   tamanho do fragmento,
+
+        -   isolamento,
+
+        -   frequência do fogo,
+
+        -   tempo desde o último fogo
+
+        -   e idade da vegetação secundária.
+
+Os dados do módulo da versão beta de degradação estão disponíveis para download clicando [**aqui**](https://code.earthengine.google.com/?scriptPath=users%2Fmapbiomas%2Fuser-toolkit%3Amapbiomas-user-toolkit-degradation.js).
+
+As estatísticas estão disponíveis em arquivos por:
+
+-   país,
+
+-   bioma,
+
+-   estados,
+
+-   municípios,
+
+-   bacias hidrográficas
+
+-   e áreas protegidas
+
+Para cada um dos vetores (fogo, área de borda, tamanho do fragmento, isolamento, vegetação secundária) neste [arquivo zip](https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/collection_8/degradation/statistics/brazil-degradation-statistics.zip).
+
+-   Caso tenha dúvidas, sugestões ou feedbacks para aprimoramento dos dados e módulo, entre em contato pelo e-mail: [contato\@mapbiomas.org](mailto:contato@mapbiomas.org).
+
+Os dados do MapBiomas são públicos, abertos e gratuitos sob licença CC-BY-SA e mediante a referência da fonte, observando o seguinte formato: \"Módulo de degradação da vegetação nativa do Brasil (1986-2021) -- versão beta, acessado em [DATA] [LINK]\"
