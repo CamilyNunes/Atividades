@@ -43,6 +43,7 @@ METADADOS <- read_excel("Dados/tabela_geral_mapbiomas_col8_biomas_municipios.xls
 transicoes <- read_excel("Dados/tabela_geral_mapbiomas_col8_biomas_municipios.xlsx",
                          sheet = "TRANSICOES_COL8.0",
                          skip = 0)
+
 ###Visualização dos Dados
 
 ### Cobertura e Uso
@@ -61,13 +62,14 @@ library(gt)
 library(networkD3)
 
 #2. Configuração de Opções
+
 # Configura as opções para a visualização dos números em gráficos e tabelas
 options(scipen = 999)
 
 # 3. Análise de Cobertura e Uso da Terra no Município de Rondonópolis
 
 
-##Nível 0: Análise de Cobertura no Município
+##Nível 0:
 # Preparação da tabela de cobertura no Nível 0 para o município de Rondonópolis
 rondonopolis_level0_a <- dados_degrad2 %>% 
   filter(municipality == "Rondonópolis") %>% 
@@ -95,14 +97,13 @@ colSums(rondonopolis_level0_a[, c(2:7)], na.rm = TRUE)
 # Salva a área total para futuros cálculos
 rondonopolis_area <- colSums(rondonopolis_level0_a[, c(2:7)], na.rm = TRUE)[1] * 1000
 
-##espaço para interpretação
+##Espaço para interpretação
 #Anthropic (Áreas Antrópicas): 
 #Natural: 
 #Not Applied: 
 
 
-## Nível 0: Proporção da Cobertura no Município
-
+## Nível 0: Proporção da Cobertura
 # Preparação da tabela com proporção de cobertura no Nível 0
 rondonopolis_level0_b <- dados_degrad2 %>% 
   filter(municipality == "Rondonópolis") %>% 
@@ -119,8 +120,8 @@ rondonopolis_level0_b <- dados_degrad2 %>%
 # Exibe a tabela com formatação utilizando o pacote gt
 rondonopolis_level0_b %>% gt()
 
-##Nível 1: Análise de Cobertura no Município
 
+##Nível 1:
 # Preparação da tabela de cobertura no Nível 1 para o município de Rondonópolis
 rondonopolis_level1_a <- dados_degrad2 %>% 
   filter(municipality == "Rondonópolis") %>% 
@@ -140,11 +141,11 @@ rondonopolis_level1_a %>% gt()
 # Conferência dos totais de área por ano no Nível 1
 colSums(rondonopolis_level1_a[, c(2:7)], na.rm = TRUE)
 
+
 # Atualiza a área total para os cálculos de proporção
 rondonopolis_area <- colSums(rondonopolis_level1_a[, c(2:7)], na.rm = TRUE)[1] * 1000
 
-## Nível 1: Proporção da Cobertura no Município
-
+## Nível 1:
 # Preparação da tabela com proporção de cobertura no Nível 1
 rondonopolis_level1_b <- dados_degrad2 %>% 
   filter(municipality == "Rondonópolis") %>% 
@@ -160,8 +161,7 @@ rondonopolis_level1_b <- dados_degrad2 %>%
 # Exibe a tabela com formatação utilizando o pacote gt
 rondonopolis_level1_b %>% gt()
 
-##Nível 2: Análise de Cobertura no Município
-
+##Nível 2: 
 # Preparação da tabela de cobertura no Nível 2 para o município de Rondonópolis
 rondonopolis_level2_a <- dados_degrad2 %>% 
   filter(municipality == "Rondonópolis") %>% 
@@ -184,7 +184,7 @@ colSums(rondonopolis_level2_a[, c(2:7)], na.rm = TRUE)
 # Atualiza a área total para os cálculos de proporção
 rondonopolis_area <- colSums(rondonopolis_level2_a[, c(2:7)], na.rm = TRUE)[1] * 1000
 
-##Nível 2: Proporção da Cobertura no Município
+##Nível 2: Proporção da Cobertura
 
 # Preparação da tabela com proporção de cobertura no Nível 2
 rondonopolis_level2_b <- dados_degrad2 %>% 
@@ -199,4 +199,90 @@ rondonopolis_level2_b <- dados_degrad2 %>%
     `2022` = round(sum(`2022`, na.rm = TRUE) / rondonopolis_area * 100, 2))
 
 # Exibe a tabela com formatação utilizando o pacote gt
-rondonopolis_level2_b %>% gt()
+rondonopolis_level2_a %>% gt()
+
+
+
+##Nível 3:
+
+# Preparação da tabela de cobertura no Nível 3 para o município de Rondonópolis
+rondonopolis_level3_a <- dados_degrad2 %>% 
+  filter(municipality == "Rondonópolis") %>% 
+  group_by(level_3) %>% 
+  summarise(
+    `1985` = round(sum(`1985`, na.rm = TRUE) / 1000),
+    `1990` = round(sum(`1990`, na.rm = TRUE) / 1000),
+    `2000` = round(sum(`2000`, na.rm = TRUE) / 1000),
+    `2010` = round(sum(`2010`, na.rm = TRUE) / 1000),
+    `2020` = round(sum(`2020`, na.rm = TRUE) / 1000),
+    `2022` = round(sum(`2022`, na.rm = TRUE) / 1000)
+  )
+
+# Exibe a tabela com formatação utilizando o pacote gt
+rondonopolis_level3_a %>% gt()
+
+# Conferência dos totais de área por ano no Nível 3
+colSums(rondonopolis_level3_a[, c(2:7)], na.rm = TRUE)
+
+# Atualiza a área total para os cálculos de proporção
+rondonopolis_area <- colSums(rondonopolis_level3_a[, c(2:7)], na.rm = TRUE)[1] * 1000
+
+##Nível 3: Proporção da Cobertura
+
+# Preparação da tabela com proporção de cobertura no Nível 3
+rondonopolis_level3_b <- dados_degrad2 %>% 
+  filter(municipality == "Rondonópolis") %>% 
+  group_by(level_3) %>% 
+  summarise(
+    `1985` = round(sum(`1985`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `1990` = round(sum(`1990`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `2000` = round(sum(`2000`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `2010` = round(sum(`2010`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `2020` = round(sum(`2020`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `2022` = round(sum(`2022`, na.rm = TRUE) / rondonopolis_area * 100, 2))
+
+# Exibe a tabela com formatação utilizando o pacote gt
+rondonopolis_level3_b %>% gt()
+
+
+
+##Nível 4:
+# Preparação da tabela de cobertura no Nível 4 para o município de Rondonópolis
+rondonopolis_level4_a <- dados_degrad2 %>% 
+  filter(municipality == "Rondonópolis") %>% 
+  group_by(level_4) %>% 
+  summarise(
+    `1985` = round(sum(`1985`, na.rm = TRUE) / 1000),
+    `1990` = round(sum(`1990`, na.rm = TRUE) / 1000),
+    `2000` = round(sum(`2000`, na.rm = TRUE) / 1000),
+    `2010` = round(sum(`2010`, na.rm = TRUE) / 1000),
+    `2020` = round(sum(`2020`, na.rm = TRUE) / 1000),
+    `2022` = round(sum(`2022`, na.rm = TRUE) / 1000)
+  )
+
+# Exibe a tabela com formatação utilizando o pacote gt
+rondonopolis_level4_a %>% gt()
+
+# Conferência dos totais de área por ano no Nível 4
+colSums(rondonopolis_level4_a[, c(2:7)], na.rm = TRUE)
+
+# Atualiza a área total para os cálculos de proporção
+rondonopolis_area <- colSums(rondonopolis_level4_a[, c(2:7)], na.rm = TRUE)[1] * 1000
+
+##Nível 4: Proporção da Cobertura
+# Preparação da tabela com proporção de cobertura no Nível 4
+rondonopolis_level4_b <- dados_degrad2 %>% 
+  filter(municipality == "Rondonópolis") %>% 
+  group_by(level_4) %>% 
+  summarise(
+    `1985` = round(sum(`1985`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `1990` = round(sum(`1990`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `2000` = round(sum(`2000`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `2010` = round(sum(`2010`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `2020` = round(sum(`2020`, na.rm = TRUE) / rondonopolis_area * 100, 2),
+    `2022` = round(sum(`2022`, na.rm = TRUE) / rondonopolis_area * 100, 2))
+
+# Exibe a tabela com formatação utilizando o pacote gt
+rondonopolis_level4_b %>% gt()
+
+
