@@ -4,6 +4,8 @@
 # Certifique-se de verificar os termos e condições de uso do site, bem como o arquivo robots.txt antes de prosseguir com o download automatizado.
 
 # 1. Carregar as Bibliotecas Necessárias
+install.packages(c("curl","readxl", "utils"))
+
 library(curl)    # Para realizar downloads
 library(readxl)  # Para ler arquivos Excel
 library(utils)   # Para funções utilitárias como unzip
@@ -27,7 +29,7 @@ curl::multi_download(
   "Dados/tabela_geral_mapbiomas_col8_biomas_municipios.xlsx"
 )
 
-# 8. Leitura dos Dados de Cobertura e Transições
+# 5. Leitura dos Dados de Cobertura e Transições
 ## Ler a aba de cobertura de biomas
 dados_degrad2 <- read_excel("Dados/tabela_geral_mapbiomas_col8_biomas_municipios.xlsx",
                             sheet = "COBERTURA_COL8.0",
